@@ -3,18 +3,9 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 sys.path.append("../fantasy_football")
-from universal.common_use import whitelist, has_numbers
+from universal.common_use import whitelist, has_numbers, headers, espn_cookies
 
 url = "https://fantasy.espn.com/apis/v3/games/ffl/seasons/2022/segments/0/leagues/898997769?rosterForTeamId=7&view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mRoster&view=mSettings&view=mTeam&view=modular&view=mNav"
-
-espn_cookies = {"swid": "{11F62244-D8C5-462F-BA6C-F2393EF28D6E}",
-                "espn_s2": "AECy1%2FYwRZXQGhDYs%2BdlWOH%2FXtfsiEj%2Fl48YgQU61VjeBcVjNBakLk49WOW309ptiG%2BQBpYWDypR8ZY09H%2FUCpKeXfmc0e4K1biE0IoPPJQsRaq4PVmZiECEw%2Fv9Vw8bsOt1WZipnhzc20mlYtGZGD15mf7fUB9ShLkGi9LgTQg5LtdzgdN7l8UBZikcv49Uc3VYLlLaATYxul2ZTT20d1TS7ImzzezCeJSTCgDp1uruqHCyNe07yquk9AYxUB856knCXJWNhoGdtQ5CDYhpYEF%2F"}
-
-headers = {
-    'Connection': 'keep-alive',
-    'Accept': 'application/json, text/plain, */*',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36',
-}
 
 r = requests.get(url, headers=headers, cookies=espn_cookies)
 espn_raw_data = r.json()
@@ -49,4 +40,4 @@ for i in range(0, 16):
                 'li')[2].text.strip()).lower()
         team_6.append([first_name, last_name, position, my_team_id])
 
-print(team_6)
+# print(team_6)
