@@ -6,7 +6,8 @@ from bs4 import BeautifulSoup
 from universal.common_use import whitelist, headers, espn_cookies, has_numbers
 
 unavailable_players = []
-for team_number in range(0,14):
+teams_in_league = 14
+for team_number in range(0,teams_in_league):
     url = "https://fantasy.espn.com/apis/v3/games/ffl/seasons/2022/segments/0/leagues/898997769?rosterForTeamId={}&view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mRoster&view=mSettings&view=mTeam&view=modular&view=mNav".format(team_number+1)
 
     r = requests.get(url, headers=headers, cookies=espn_cookies)
