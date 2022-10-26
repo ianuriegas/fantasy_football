@@ -1,8 +1,8 @@
 # Steve fr MC TX
 import requests
 from bs4 import BeautifulSoup
-
-# from my_team import whitelist
+import sys
+sys.path.append("../fantasy_football")
 from universal.common_use import whitelist, has_numbers
 
 url = "https://fantasy.espn.com/apis/v3/games/ffl/seasons/2022/segments/0/leagues/898997769?rosterForTeamId=6&view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mRoster&view=mSettings&view=mTeam&view=modular&view=mNav"
