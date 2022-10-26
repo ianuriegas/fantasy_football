@@ -1,8 +1,6 @@
-# Country Roads, Take Mahomes
+# all teams in the league
 import requests
 from bs4 import BeautifulSoup
-
-# from my_team import whitelist
 from universal.common_use import whitelist, headers, espn_cookies, has_numbers
 
 unavailable_players = []
@@ -14,14 +12,12 @@ for team_number in range(0,teams_in_league):
     espn_raw_data = r.json()
     espn_draft_detail = espn_raw_data
 
-    draft_picks = espn_draft_detail['teams'][team_number]['roster']['entries'][0]['playerId']
-
     for i in range(0, 16):
-        my_team_id = espn_draft_detail['teams'][team_number]['roster']['entries'][i]['playerId']
+        player_id = espn_draft_detail['teams'][team_number]['roster']['entries'][i]['playerId']
 
-        # Defenses are negative
-        if my_team_id > 0:
-            temp_url = "https://www.espn.com/nfl/player/_/id/{}".format(my_team_id)
+        # Defenses player id's are negative
+        if player_id > 0:
+            temp_url = "https://www.espn.com/nfl/player/_/id/{}".format(player_id)
             page = requests.get(temp_url)
             soup = BeautifulSoup(page.content, "html.parser")
 
@@ -38,6 +34,6 @@ for team_number in range(0,teams_in_league):
                 position = ((soup.find("ul", {
                     "class": "PlayerHeader__Team_Info list flex pt1 pr4 min-w-0 flex-basis-0 flex-shrink flex-grow nowrap"})).find_all(
                     'li')[2].text.strip()).lower()
-            unavailable_players.append([first_name, last_name, position, my_team_id])
+            unavailable_players.append([first_name, last_name, position, player_id])
 
 # print(unavailable_players)
