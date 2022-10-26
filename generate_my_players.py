@@ -1,7 +1,9 @@
 import csv
 import time
+
 start = time.time()
-from my_team import myTeam
+from teams.old.my_team import myTeam
+
 my_players = myTeam
 with open('data/my_players.csv', 'w', encoding='UTF8', newline='') as f:
     for i in range(0, len(my_players)):
