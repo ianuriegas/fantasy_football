@@ -110,7 +110,12 @@ def main():
 
     # Use sort function to get sorted flex position list
     sorted_flex = sort_comparison(flex)
-
+    print("SORTED QB :", sorted_qb)
+    print("SORTED RB :", sorted_rb)
+    print("SORTED WR :", sorted_wr)
+    print("SORTED TE :", sorted_te)
+    print("SORTED FLEX :", sorted_flex)
+    print("SORTED K :", sorted_k)
     print("Best Lineup from your current players")
 
     # 1 QB
