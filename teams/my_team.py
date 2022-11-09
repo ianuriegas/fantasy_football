@@ -1,13 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 from universal.common_use import whitelist, headers, espn_cookies, has_numbers
-
-url = "https://fantasy.espn.com/apis/v3/games/ffl/seasons/2022/segments/0/leagues/898997769?rosterForTeamId=4&view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mRoster&view=mSettings&view=mTeam&view=modular&view=mNav"
+team_number = 3
+url = "https://fantasy.espn.com/apis/v3/games/ffl/seasons/2022/segments/0/leagues/898997769?rosterForTeamId={}&view=mDraftDetail&view=mLiveScoring&view=mMatchupScore&view=mPendingTransactions&view=mPositionalRatings&view=mRoster&view=mSettings&view=mTeam&view=modular&view=mNav".format(team_number+1)
 
 r = requests.get(url, headers=headers, cookies=espn_cookies)
 espn_raw_data = r.json()
 espn_draft_detail = espn_raw_data
-team_number = 3
 
 myTeam = []
 

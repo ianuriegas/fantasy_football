@@ -5,12 +5,28 @@ from teams.my_team import myTeam
 
 
 def get_comparison(player_1, player_2):
+    # print(player_1, player_2)
+    # print(player_1[-2:])
+    # print(player_2[-2:])
+    # if player_1[-2:] == "jr":
+    #     player_1 = player_1[:-2]
+    #     print(player_1)
+    # if player_2[-2:] == "jr":
+    #     player_2 = player_2[:-2]
+    #     print(player_2)
+    if player_1 == "jeff-wilsonjr":
+        player_1 = "jeffery-wilson"
+
+    if player_2 == "jeff-wilsonjr":
+        player_2 = "jeffery-wilson"
+
     # get the simple format of the calculator we want to use
     temp_url = "https://fantasyfootballcalculator.com/start/{}-or-{}".format(player_1, player_2)
+    # print([player_1,player_2])
     page = requests.get(temp_url)
     soup = BeautifulSoup(page.content, "html.parser")
 
-    # find the tags that say "strong" because that is where the data is that we want
+    # find the tags that say "strong" because that is wherethe data is that we want
     strong_tags = soup.find_all("strong")
 
     # get the text, (ex: "START" or "BENCH"), from these tags
@@ -116,7 +132,7 @@ def main():
     print("SORTED TE :", sorted_te)
     print("SORTED FLEX :", sorted_flex)
     print("SORTED K :", sorted_k)
-    print("Best Lineup from your current players")
+    print("\nBest Lineup from your current players")
 
     # 1 QB
     qb1 = get_correct_format(sorted_qb[len(sorted_qb) - 1])
